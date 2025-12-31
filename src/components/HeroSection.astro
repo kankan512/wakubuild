@@ -1,0 +1,99 @@
+<section class="hero-section relative w-full overflow-hidden">
+  <div class="hero-slider absolute inset-0">
+    <div class="hero-slide" style="background-image: url('/top/mainVisual_1.jpg');"></div>
+  </div>
+  <div class="hero-overlay absolute inset-0"></div>
+
+  <div class="section-container relative z-10 h-full flex items-end pb-20 md:pb-24">
+    <div class="hero-content max-w-3xl space-y-8 lg:-translate-x-6">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-slate-900 leading-tight reveal-group" style="--reveal-color: #0f172a; --text-color: #0f172a;">
+        <span class="hidden lg:inline reveal-line" style="--reveal-delay: 0ms;">勝つための<br>IT化伴走パートナー</span>
+      </h1>
+      <p class="text-lg text-slate-600 reveal-group" style="--reveal-color: #475569; --text-color: #475569;">
+        <span class="reveal-line" style="--reveal-delay: 280ms;">現場での悩みを聞き、人とAIが自然に噛み合うやり方を一緒に探します。</span>
+        <br class="hidden md:block" />
+        <span class="reveal-line" style="--reveal-delay: 420ms;">課題がぼんやりした状態からでも、提案ベースでIT化を支援します！</span>
+      </p>
+      <div class="animate-fade-up" style="animation-delay: 320ms;">
+        <div class="flex flex-wrap gap-3">
+          <a href="/contact" class="btn-primary">
+            ちょっと相談する
+            <span aria-hidden>→</span>
+          </a>
+          <a href="/services" class="inline-flex items-center gap-2 px-4 py-3 rounded-lg border border-slate-200 hover:border-brand-primary hover:text-brand-dark transition">
+            サービスを見る
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    height: calc(100svh - var(--header-height));
+    min-height: 520px;
+  }
+  @media (min-width: 768px) {
+    .hero-section {
+      min-height: 640px;
+    }
+  }
+  .hero-slider {
+    height: 100%;
+  }
+  .hero-overlay {
+    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.45) 100%);
+  }
+  .hero-content {
+    background: rgba(255,255,255,0.92);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  }
+  @media (min-width: 768px) {
+    .hero-content {
+      padding: 36px;
+    }
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .reveal-line {
+    position: relative;
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    color: transparent;
+    background-image: linear-gradient(var(--reveal-color), var(--reveal-color));
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position: 0 100%;
+    animation: line-reveal 1.5s forwards;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+  @keyframes line-reveal {
+    0% {
+      color: transparent;
+      background-size: 0% 100%;
+    }
+    35% {
+      color: transparent;
+      background-size: 100% 100%;
+    }
+    65% {
+      color: var(--text-color);
+      background-size: 100% 100%;
+    }
+    100% {
+      color: var(--text-color);
+      background-size: 0% 100%;
+      background-position: 100% 100%;
+    }
+  }
+
+</style>

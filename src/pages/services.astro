@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import TagList from '../components/TagList.astro';
+
+const services = [
+  {
+    title: 'DX伴走支援',
+    summary: '課題の“引っかかり”を一緒にほどきます。小さく試して、続けられる形へ。',
+    points: ['DX伴走支援', '業務システム開発', 'スマートフォンアプリ開発'],
+    imageSrc: '/top/service_1.jpg',
+  },
+  {
+    title: '研修',
+    summary: '「これなら明日から使える」ラインで設計。現場の言葉で学べるAIリスキリング研修です。',
+    points: ['AIリスキリング研修'],
+    imageSrc: '/top/service_2.jpg',
+  },
+  {
+    title: 'プロダクト',
+    summary: '現場のムダを少しずつ減らす自社プロダクト。使い始めの不安にも寄り添います。',
+    points: ['超らく！弁護士', '超らく！議事録', 'AIチャットBot'],
+    imageSrc: '/top/service_3.jpg',
+  },
+];
+
+const titleBgImage = '/top/mainVisual_2.jpg';
+---
+<Layout title="サービス | WAKU BUILD" description="WAKU BUILD（ワクビル）のサービス一覧。DX伴走支援、AIリスキリング研修、業務システム・アプリ開発を提供。" pathname="/services">
+  <section
+    class="relative w-full py-16 overflow-hidden mb-10 md:mb-14"
+    style={`background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('${titleBgImage}'); background-size: cover; background-position: center;`}
+  >
+    <div class="section-container relative z-10">
+      <SectionHeading
+        eyebrow="Services"
+        title="成果につながるサービス"
+        description="現場のやりにくさを、少しずつほどくメニューです。伴走・研修・プロダクトで、無理なく前へ進めます。"
+        as="h1"
+        size="xl"
+      />
+    </div>
+  </section>
+
+  <section class="section-container pb-16 space-y-14 md:space-y-16">
+    {services.map((service, index) => {
+      const isOdd = index % 2 === 0;
+      return (
+        <div class="grid gap-6 md:grid-cols-2 items-center">
+          <div class={isOdd ? 'md:order-2' : 'md:order-1'}>
+            <div class="relative overflow-hidden rounded-xl">
+              <img
+                src={service.imageSrc}
+                alt={`${service.title}のイメージ`}
+                class="h-56 md:h-72 w-full object-cover rounded-xl"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent"></div>
+            </div>
+          </div>
+          <div class={`space-y-4 ${isOdd ? 'md:order-1' : 'md:order-2'}`}>
+            <h2 class="text-3xl md:text-4xl font-display font-medium text-slate-900">
+              <span class="text-brand-dark italic text-base md:text-lg">{`0${index + 1}.`}</span>{' '}
+              {service.title}
+            </h2>
+            <p class="text-slate-600 text-lg">{service.summary}</p>
+            <TagList items={service.points} />
+          </div>
+        </div>
+      );
+    })}
+  </section>
+
+</Layout>

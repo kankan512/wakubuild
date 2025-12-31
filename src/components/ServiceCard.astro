@@ -1,0 +1,57 @@
+---
+import TagList from './TagList.astro';
+import PlaceholderImage from './PlaceholderImage.astro';
+
+const {
+  title,
+  description,
+  items = [],
+  icon,
+  badge,
+  ctaText,
+  ctaHref,
+  delay = 0,
+  headingTag = 'h3',
+  titleClass = 'text-lg',
+  imageText,
+  imageAlt = '',
+  imageWidth = 720,
+  imageHeight = 480,
+} = Astro.props;
+
+const HeadingTag = headingTag;
+const hasIcon = Boolean(icon);
+const hasBadge = Boolean(badge);
+const headerClass = hasIcon
+  ? 'flex items-center gap-3'
+  : hasBadge
+    ? 'flex items-center justify-between'
+    : 'flex items-center';
+---
+
+<article class="card p-6 flex flex-col gap-4 animate-fade-up" style={`animation-delay:${delay}ms`}>
+  {imageText && (
+    <PlaceholderImage
+      width={imageWidth}
+      height={imageHeight}
+      text={imageText}
+      alt={imageAlt || `${title}のイメージ`}
+      className="h-44 w-full object-cover"
+      rounded="rounded-xl"
+    />
+  )}
+  <div class={headerClass}>
+    {hasIcon && (
+      <div class="h-10 w-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-lg">{icon}</div>
+    )}
+    <HeadingTag class={`${titleClass} font-semibold text-slate-900`}>{title}</HeadingTag>
+    {hasBadge && <span class="text-xs px-3 py-1 rounded-lg bg-brand-primary/10 text-brand-dark font-semibold">{badge}</span>}
+  </div>
+  {description && <p class="text-sm text-slate-600 flex-1">{description}</p>}
+  {items.length > 0 && <TagList items={items} />}
+  {ctaText && ctaHref && (
+    <a href={ctaHref} class="inline-flex items-center gap-2 text-brand-primary font-semibold text-sm">
+      {ctaText} <span aria-hidden>→</span>
+    </a>
+  )}
+</article>

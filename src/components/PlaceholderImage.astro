@@ -1,0 +1,15 @@
+---
+const {
+  width = 1200,
+  height = 800,
+  text = 'Placeholder',
+  alt = 'イメージ',
+  className = '',
+  rounded = 'rounded-xl',
+} = Astro.props;
+
+const encodedText = encodeURIComponent(text);
+const src = `https://placehold.jp/edf2f7/64748b/${width}x${height}.png?text=${encodedText}`;
+---
+
+<img src={src} alt={alt} class={`${rounded} ${className}`} loading="lazy" decoding="async" />

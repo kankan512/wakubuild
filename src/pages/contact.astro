@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const ssgAction = 'https://ssgform.com/s/YOUR-FORM-ID';
+const titleBgImage = '/top/mainVisual_3.jpg';
+---
+<Layout title="お問い合わせ | WAKU BUILD" description="WAKU BUILDへのお問い合わせフォーム。DX伴走支援や研修のご相談はこちら。" pathname="/contact">
+  <section
+    class="relative w-full py-16 overflow-hidden mb-10 md:mb-14"
+    style={`background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('${titleBgImage}'); background-size: cover; background-position: center;`}
+  >
+    <div class="section-container relative z-10 space-y-6">
+      <SectionHeading
+        eyebrow="Contact"
+        title="お問い合わせ"
+        description="プロジェクトのご相談、見積もり依頼、パートナーシップなどお気軽にどうぞ。まずは雑談からでも大丈夫です。"
+        as="h1"
+        size="xl"
+      />
+      <p class="text-sm text-slate-700 max-w-2xl">
+        ざっくりした状況でもOKです。「どこから手を付けるべき？」みたいな相談、よくあります。
+      </p>
+    </div>
+  </section>
+  <section class="section-container pt-10 pb-16">
+    <ContactForm action={ssgAction} redirect="/thanks" />
+  </section>
+</Layout>

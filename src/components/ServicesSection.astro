@@ -1,0 +1,68 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import TagList from './TagList.astro';
+
+const services = [
+  {
+    title: 'DX伴走支援',
+    desc: '経営と現場の間に立ち、課題の“引っかかり”を一緒にほどきます。小さく試して、続けられる形へ。',
+    items: ['DX伴走支援', '業務システム開発', 'スマートフォンアプリ開発'],
+    imageSrc: '/top/service_1.jpg',
+  },
+  {
+    title: '研修',
+    desc: '「これなら明日から使える」ラインで設計。現場の言葉で学べるAIリスキリング研修です。',
+    items: ['AIリスキリング研修'],
+    imageSrc: '/top/service_2.jpg',
+  },
+  {
+    title: 'プロダクト',
+    desc: '現場のムダを少しずつ減らす自社プロダクト。使い始めの不安にも寄り添います。',
+    items: ['超らく！弁護士', '超らく！議事録', 'AIチャットBot'],
+    imageSrc: '/top/service_3.jpg',
+  },
+];
+---
+<section class="section-container py-16 space-y-8" id="services">
+  <SectionHeading
+    eyebrow="Service"
+    title="提供サービス"
+    size="xl"
+    align="center"
+    containerClass="mb-10"
+    titleClass="text-4xl md:text-5xl"
+    eyebrowPosition="bottom"
+  />
+  <div class="space-y-14 md:space-y-16">
+    {services.map((service, index) => {
+      const isOdd = index % 2 === 0;
+      return (
+        <div class="grid gap-6 md:grid-cols-2 items-center">
+          <div class={isOdd ? 'md:order-2' : 'md:order-1'}>
+            <div class="relative overflow-hidden rounded-xl">
+              <img
+                src={service.imageSrc}
+                alt={`${service.title}のイメージ`}
+                class="h-56 md:h-72 w-full object-cover rounded-xl"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent"></div>
+            </div>
+          </div>
+          <div class={`space-y-4 ${isOdd ? 'md:order-1' : 'md:order-2'}`}>
+            <h3 class="text-3xl md:text-4xl font-display font-medium text-slate-900">
+              <span class="text-brand-dark italic text-base md:text-lg">{`0${index + 1}.`}</span>{' '}
+              {service.title}
+            </h3>
+            <p class="text-slate-600 text-lg">{service.desc}</p>
+            <TagList items={service.items} />
+          </div>
+        </div>
+      );
+    })}
+  </div>
+  <div class="pt-4 flex justify-center">
+    <a href="/services" class="btn-primary w-full sm:w-auto">詳細を見る</a>
+  </div>
+</section>

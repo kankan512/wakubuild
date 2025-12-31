@@ -1,0 +1,25 @@
+---
+const {
+  title,
+  description,
+  pathname = '/',
+  image = '/favicon.svg',
+  siteName = 'WAKU BUILD',
+} = Astro.props;
+
+const site = 'https://your-github-username.github.io/wakubuild';
+const url = `${site}${pathname}`;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={image} />
+<meta property="og:site_name" content={siteName} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />

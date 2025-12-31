@@ -1,0 +1,21 @@
+---
+const {
+  items = [],
+  variant = 'soft',
+  size = 'sm',
+  className = '',
+} = Astro.props;
+
+const variantClass =
+  variant === 'outline'
+    ? 'border border-slate-200 bg-white text-slate-700'
+    : 'bg-brand-muted/70 text-slate-700';
+
+const sizeClass = size === 'lg' ? 'text-sm px-3 py-2' : 'text-xs px-3 py-1.5';
+---
+
+<div class={`flex flex-wrap gap-2 ${className}`}>
+  {items.map((item) => (
+    <span class={`${sizeClass} rounded-lg ${variantClass}`}>{item}</span>
+  ))}
+</div>

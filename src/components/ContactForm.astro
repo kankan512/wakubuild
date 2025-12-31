@@ -1,0 +1,99 @@
+---
+const {
+  action = 'https://ssgform.com/s/YOUR-FORM-ID',
+  showRecaptcha = false,
+  redirect = '/thanks',
+} = Astro.props;
+---
+<form
+  id="contact-form"
+  class="card p-6 md:p-8 space-y-4"
+  action={action}
+  method="POST"
+  novalidate
+>
+  <input type="hidden" name="_redirect" value={redirect} />
+  <div class="space-y-2">
+    <label for="name" class="block text-sm font-semibold text-slate-800">お名前 *</label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      required
+      aria-label="お名前"
+      class="w-full rounded-lg border border-slate-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-primary"
+      placeholder="山田 太郎"
+    />
+  </div>
+  <div class="space-y-2">
+    <label for="email" class="block text-sm font-semibold text-slate-800">メールアドレス *</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      required
+      aria-label="メールアドレス"
+      class="w-full rounded-lg border border-slate-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-primary"
+      placeholder="example@wakubuild.co.jp"
+    />
+  </div>
+  <div class="space-y-2">
+    <label for="message" class="block text-sm font-semibold text-slate-800">お問い合わせ内容 *</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="5"
+      required
+      aria-label="お問い合わせ内容"
+      class="w-full rounded-lg border border-slate-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-primary"
+      placeholder="課題やご相談内容をご記入ください"
+    ></textarea>
+  </div>
+
+  {showRecaptcha && (
+    <div class="rounded-lg border border-dashed border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
+      reCAPTCHA をここに設置できます。
+    </div>
+  )}
+
+  <div class="flex items-center gap-3">
+    <button type="submit" class="btn-primary">送信する</button>
+    <p class="text-xs text-slate-500">※ 送信でプライバシーポリシーに同意したものとみなします。</p>
+  </div>
+  <p id="form-error" class="hidden text-sm text-red-600" role="alert"></p>
+  <p id="form-success" class="hidden text-sm text-green-600" role="status">送信中です…</p>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const errorEl = document.getElementById('form-error');
+  const successEl = document.getElementById('form-success');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      errorEl?.classList.add('hidden');
+      successEl?.classList.add('hidden');
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      const emailRegex = /[^@\s]+@[^@\s]+\.[^@\s]+/;
+
+      if (!name || !email || !message) {
+        e.preventDefault();
+        errorEl.textContent = '必須項目を入力してください。';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+      if (!emailRegex.test(email)) {
+        e.preventDefault();
+        errorEl.textContent = 'メールアドレスの形式が正しくありません。';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
+      successEl.textContent = '送信中です...';
+      successEl.classList.remove('hidden');
+    });
+  }
+</script>

@@ -1,0 +1,36 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import TagList from './TagList.astro';
+---
+
+<section class="section-container py-16">
+  <SectionHeading
+    eyebrow="Mission"
+    title="ミッション"
+    size="xl"
+  />
+    <div class="mt-8 max-w-4xl mx-auto">
+      <div class="grid gap-8 lg:grid-cols-[1fr_1.1fr] items-start text-center lg:text-left">
+        <div class="space-y-3 border-b border-slate-200 pb-4 lg:border-b-0 lg:pb-0">
+          <h3 class="text-lg font-semibold text-brand-primary">Mission</h3>
+          <p class="text-3xl md:text-4xl font-display font-semibold text-slate-900">ワクワクをつくる</p>
+          <p class="text-sm text-slate-600">
+            現場の「それ、助かる」を増やすこと。小さな前進を積み上げて、仕事を楽しくするのが私たちのやり方です。
+          </p>
+        </div>
+        <div class="space-y-6">
+          <div class="space-y-2 border-b border-slate-200 pb-4">
+            <h3 class="text-lg font-semibold text-brand-primary">Vision</h3>
+            <p class="text-base md:text-lg text-slate-600">誰もが毎日を本気になれることで埋め尽くせる社会</p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-lg font-semibold text-brand-primary">Value</h3>
+            <div class="flex justify-center lg:justify-start">
+              <TagList items={['やってみる', '自分が楽しむ', '相手を楽しませる', 'みんなで成長する']} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

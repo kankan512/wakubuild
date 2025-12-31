@@ -1,0 +1,65 @@
+---
+const {
+  eyebrow,
+  title,
+  description,
+  actionText,
+  actionHref,
+  layout = 'stack',
+  align = 'left',
+  size = 'lg',
+  as = 'h2',
+  titleClass = '',
+  containerClass = '',
+  eyebrowPosition = 'top',
+} = Astro.props;
+
+const Tag = as;
+const sizeMap = {
+  xl: 'text-3xl md:text-4xl',
+  lg: 'text-2xl md:text-3xl',
+};
+const titleSize = sizeMap[size] ?? sizeMap.lg;
+const alignClasses = align === 'center' ? 'text-center items-center' : 'text-left items-start';
+const wrapperClasses =
+  layout === 'split'
+    ? 'flex flex-col md:flex-row md:items-end md:justify-between gap-4'
+    : `flex flex-col ${alignClasses}`;
+---
+
+<div class={`section-heading ${wrapperClasses} ${containerClass}`}>
+  <div class={`space-y-3 ${layout === 'split' ? '' : alignClasses}`}>
+    {eyebrow && eyebrowPosition === 'top' && (
+      <p class="text-xs uppercase tracking-[0.2em] text-brand-dark">{eyebrow}</p>
+    )}
+    <Tag class={`${titleSize} font-display font-bold text-slate-900 ${titleClass}`}>{title}</Tag>
+    {eyebrow && eyebrowPosition === 'bottom' && (
+      <div class={`section-heading-eyebrow ${alignClasses}`}>
+        <span class="section-heading-divider" aria-hidden="true"></span>
+        <p class="text-xs uppercase tracking-[0.2em] text-brand-dark">{eyebrow}</p>
+      </div>
+    )}
+    {description && <p class="text-slate-600 max-w-3xl">{description}</p>}
+  </div>
+  {layout === 'split' && actionText && actionHref && <a href={actionHref} class="btn-primary">{actionText}</a>}
+</div>
+
+<style>
+  .section-heading-eyebrow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .section-heading-divider {
+    display: block;
+    width: 56px;
+    height: 2px;
+    background: var(--color-brand-primary);
+  }
+  .section-heading-eyebrow.text-center .section-heading-divider {
+    margin: 0 auto;
+  }
+  .section-heading-eyebrow.text-left .section-heading-divider {
+    margin-right: auto;
+  }
+</style>

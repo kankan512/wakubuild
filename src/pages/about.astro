@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CompanyOverview from '../components/CompanyOverview.astro';
+
+const timeline = [
+  { year: '2025.06', text: 'WAKU BUILD （ワクビル）株式会社を大阪で設立。' },
+  { year: '2025.06', text: 'DX伴走支援・AIリスキリング研修・システム・アプリ開発を開始。' },
+];
+
+const titleBgImage = '/top/mainVisual_1.jpg';
+---
+<Layout title="会社情報 | WAKU BUILD" description="WAKU BUILD（ワクビル）の会社概要、沿革、ミッション・ビジョン・バリューを紹介します。" pathname="/about">
+  <section
+    class="relative w-full py-16 overflow-hidden mb-10 md:mb-14"
+    style={`background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('${titleBgImage}'); background-size: cover; background-position: center;`}
+  >
+    <div class="section-container relative z-10">
+      <SectionHeading
+        eyebrow="About"
+        title="ワクビルのこと"
+        description="現場の人が置き去りにならないIT化を大切にしています。急ぎすぎず、でも止めずに。そんな伴走スタイルです。"
+        as="h1"
+        size="xl"
+      />
+    </div>
+  </section>
+
+  <CompanyOverview />
+
+  <section class="section-container pb-16">
+    <h2 class="text-2xl font-display font-bold text-slate-900 mb-6">沿革</h2>
+    <ol class="space-y-3 text-sm text-slate-700">
+      {timeline.map((item) => (
+        <li class="flex gap-4">
+          <span class="text-brand-dark font-semibold w-14">{item.year}</span>
+          <p>{item.text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+</Layout>

@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #0097b2;
+  --color-brand-dark: #007a8f;
+  --color-brand-accent: #f6b800;
+  --color-brand-muted: #eef5fb;
+  --font-sans: "Noto Sans JP", Inter, system-ui, sans-serif;
+  --font-display: "Noto Sans JP", Inter, system-ui, sans-serif;
+  @keyframes fade-up {
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  --animate-fade-up: fade-up 0.8s ease-out both;
+  @keyframes page-enter {
+    0% { opacity: 0; transform: translateY(6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes page-leave {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-6px); }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --header-height: 64px;
+  }
+  body {
+    @apply font-sans text-slate-800 bg-white leading-relaxed;
+    background: radial-gradient(120% 120% at 10% 20%, rgba(30,136,229,0.08), transparent 50%),
+      radial-gradient(100% 100% at 80% 0%, rgba(246,184,0,0.10), transparent 45%),
+      #ffffff;
+  }
+
+  a {
+    @apply text-brand-primary hover:text-brand-dark transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-5 py-3 rounded-lg text-white bg-brand-primary hover:bg-brand-dark shadow-lg shadow-brand-primary/20 transition-all duration-200 font-semibold;
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-md shadow-slate-200/60 border border-slate-100;
+  }
+
+  .nav-link {
+    @apply relative inline-flex items-center text-slate-700 transition-colors duration-200;
+    padding-bottom: 6px;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--color-brand-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+  .nav-link:hover,
+  .nav-link.is-active {
+    color: var(--color-brand-dark);
+  }
+  .nav-link:hover::after,
+  .nav-link.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .nav-link-mobile {
+    @apply relative block px-3 py-2 text-slate-700 transition-colors duration-200;
+  }
+  .nav-link-mobile::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 4px;
+    height: 2px;
+    background: var(--color-brand-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+  .nav-link-mobile:hover,
+  .nav-link-mobile.is-active {
+    color: var(--color-brand-dark);
+  }
+  .nav-link-mobile:hover::after,
+  .nav-link-mobile.is-active::after {
+    transform: scaleX(1);
+  }
+
+
+  .header-cta {
+    @apply inline-flex items-center justify-center px-6 text-white bg-brand-primary font-semibold transition-colors duration-200;
+    height: var(--header-height);
+  }
+  .header-cta:hover {
+    @apply bg-brand-dark;
+  }
+
+  .page-enter {
+    animation: page-enter 0.35s ease both;
+  }
+  .page-leave {
+    animation: page-leave 0.25s ease forwards;
+  }
+}
