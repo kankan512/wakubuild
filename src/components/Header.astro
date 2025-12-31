@@ -1,13 +1,12 @@
 ---
 const { pathname = '/' } = Astro.props;
 const navItems = [
-  { href: '/', label: 'ホーム' },
+  { href: '/', label: 'トップ' },
   { href: '/services', label: 'サービス' },
   { href: '/about', label: '会社情報' },
-  { href: '/contact', label: 'お問い合わせ' },
 ];
 ---
-<header class="fixed top-0 inset-x-0 z-40 bg-white/90 backdrop-blur border-b border-slate-100">
+<header class="fixed top-0 inset-x-0 z-40 bg-white border-b border-slate-100">
   <div class="section-container flex items-center justify-between h-16">
     <a href="/" class="flex items-center gap-3 font-display text-lg text-brand-dark">
       <img src="/logo.png" alt="WAKU BUILD ロゴ" class="h-10 w-auto" loading="lazy" decoding="async" />
@@ -27,21 +26,21 @@ const navItems = [
         })}
       </nav>
       <a href="/contact" class="header-cta inline-flex gap-2">
-        <span class="inline-flex h-5 w-5" aria-hidden="true">
+        <span class="inline-flex h-6 w-6" aria-hidden="true">
           <svg viewBox="0 0 24 24" class="h-full w-full fill-current" aria-hidden="true" focusable="false">
             <path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25h14.5c.69 0 1.25.56 1.25 1.25v10.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25V6.75zm1.52.25 6.64 4.64a1 1 0 0 0 1.16 0L19.48 7H5.02zM19.5 17V8.34l-5.74 4a2.5 2.5 0 0 1-2.92 0l-5.74-4V17H19.5z"/>
           </svg>
         </span>
-        無料相談
+        お問い合わせ
       </a>
     </div>
     <a href="/contact" class="header-cta hidden sm:inline-flex md:hidden gap-2">
-      <span class="inline-flex h-5 w-5" aria-hidden="true">
+      <span class="inline-flex h-6 w-6" aria-hidden="true">
         <svg viewBox="0 0 24 24" class="h-full w-full fill-current" aria-hidden="true" focusable="false">
           <path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25h14.5c.69 0 1.25.56 1.25 1.25v10.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25V6.75zm1.52.25 6.64 4.64a1 1 0 0 0 1.16 0L19.48 7H5.02zM19.5 17V8.34l-5.74 4a2.5 2.5 0 0 1-2.92 0l-5.74-4V17H19.5z"/>
         </svg>
       </span>
-      無料相談
+      お問い合わせ
     </a>
     <details class="md:hidden dropdown">
       <summary class="list-none flex items-center justify-center h-10 w-10 rounded-lg border border-slate-200 shadow-sm">

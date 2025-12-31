@@ -1,11 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import CompanyOverview from '../components/CompanyOverview.astro';
+import TagList from '../components/TagList.astro';
+
+const overviewItems = [
+  { label: '社名', value: 'WAKU BUILD （ワクビル）株式会社' },
+  { label: '代表取締役', value: '田中 和志' },
+  { label: '設立', value: '2025年6月' },
+  { label: '所在地', value: '〒530-0001大阪府大阪市北区梅田1丁目2番2号大阪駅前第2ビル12-12', span: 'sm:col-span-2' },
+  { label: '事業内容', value: 'DX伴走支援 / AIリスキリング研修 / システム・アプリ開発', span: 'sm:col-span-2' },
+];
 
 const timeline = [
-  { year: '2025.06', text: 'WAKU BUILD （ワクビル）株式会社を大阪で設立。' },
-  { year: '2025.06', text: 'DX伴走支援・AIリスキリング研修・システム・アプリ開発を開始。' },
+  { year: '2025.06', text: 'WAKU BUILD （ワクビル）株式会社を設立。' },
+  { year: '2025.09', text: 'DX伴走支援の提供を開始。' },
 ];
 
 const titleBgImage = '/top/mainVisual_1.jpg';
@@ -18,17 +26,53 @@ const titleBgImage = '/top/mainVisual_1.jpg';
     <div class="section-container relative z-10">
       <SectionHeading
         eyebrow="About"
-        title="ワクビルのこと"
-        description="現場の人が置き去りにならないIT化を大切にしています。急ぎすぎず、でも止めずに。そんな伴走スタイルです。"
+        title="会社情報"
+        description=""
         as="h1"
         size="xl"
       />
     </div>
   </section>
 
-  <CompanyOverview />
+  <section class="section-container py-16 space-y-4 max-w-4xl mb-10">
+    <h2 class="text-2xl font-display font-bold text-slate-900 mb-6">会社概要</h2>
+    <dl class="text-sm">
+      {overviewItems.map((item) => (
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 py-3 border-b border-slate-200">
+          <dt class="text-slate-500 sm:w-28 shrink-0">{item.label}</dt>
+          <dd class="text-slate-900">{item.value}</dd>
+        </div>
+      ))}
+    </dl>
+    <div class="pt-6 grid gap-6 lg:grid-cols-[1fr_1.1fr] items-start">
+      <div class="space-y-4">
+        <span class="inline-flex items-center px-3 py-1 rounded-lg bg-brand-primary/10 text-brand-dark text-xs font-semibold uppercase tracking-[0.2em]">
+          Mission
+        </span>
+        <p class="text-2xl md:text-3xl font-display font-semibold text-slate-900">ワクワクをつくる</p>
+        <p class="text-sm text-slate-600">
+          人とAIが協力し、毎日をより豊かに楽しくすることをミッションとして掲げています。
+        </p>
+      </div>
+      <div class="space-y-6">
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-3 py-1 rounded-lg bg-brand-primary/10 text-brand-dark text-xs font-semibold uppercase tracking-[0.2em]">
+            Vision
+          </span>
+          <p class="text-base md:text-lg text-slate-600">誰もが毎日を本気になれることで埋め尽くせる社会</p>
+        </div>
+        <div class="space-y-2">
+          <span class="inline-flex items-center px-3 py-1 rounded-lg bg-brand-primary/10 text-brand-dark text-xs font-semibold uppercase tracking-[0.2em]">
+            Value
+          </span>
+          <TagList items={['やってみる', '自分が楽しむ', '相手を楽しませる', 'みんなで成長する']} />
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section class="section-container pb-16">
+
+  <section class="section-container max-w-4xl pb-40">
     <h2 class="text-2xl font-display font-bold text-slate-900 mb-6">沿革</h2>
     <ol class="space-y-3 text-sm text-slate-700">
       {timeline.map((item) => (
