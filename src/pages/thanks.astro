@@ -1,16 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
 ---
-<Layout title="送信完了 | WAKU BUILD" description="お問い合わせありがとうございます。内容を確認してご連絡いたします。" pathname="/thanks">
-  <section class="section-container pt-20 pb-24 text-center space-y-4">
-    <div class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-primary text-white text-2xl shadow-lg shadow-brand-primary/30">✓</div>
-    <h1 class="text-3xl font-display font-bold text-slate-900">お問い合わせありがとうございます</h1>
-    <p class="text-slate-600 max-w-xl mx-auto">
-      内容を確認の上ご連絡いたします。もうしばらくお待ちください。
-    </p>
-    <div class="flex justify-center gap-3">
-      <a class="btn-primary" href="/">トップへ戻る</a>
-      <a class="inline-flex items-center gap-2 px-4 py-3 rounded-lg border border-slate-200 hover:border-brand-primary" href="/services">サービスを見る</a>
+<Layout title="送信完了 | WAKU BUILD" description="" pathname="/thanks">
+  <PageHero title="THANK YOU" subtitle="お問い合わせを受け付けました" />
+  <section class="section-container py-16 md:py-24 text-center max-w-2xl mx-auto">
+    <p class="text-[#464646] text-lg">お問い合わせありがとうございます。<br>内容を確認の上、担当者よりご連絡いたします。</p>
+    <div class="mt-8 flex flex-wrap gap-4 justify-center">
+      <a href="/" class="btn-primary">トップページへ</a>
+      <a href="/service" class="btn-outline">サービスを見る</a>
     </div>
   </section>
 </Layout>

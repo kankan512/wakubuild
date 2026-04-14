@@ -1,70 +1,215 @@
 ---
+interface Props {
+  pathname?: string;
+}
 const { pathname = '/' } = Astro.props;
+const isHome = pathname === '/';
 const navItems = [
-  { href: '/', label: 'トップ' },
-  { href: '/services', label: 'サービス' },
-  { href: '/about', label: '会社情報' },
+  { href: '/mission',  label: 'MISSION'  },
+  { href: '/service',  label: 'PRODUCTS' },
+  { href: '/message',  label: 'MESSAGE'  },
+  { href: '/company',  label: 'COMPANY'  },
+];
+const mobileNavItems = [
+  { href: '/',         label: 'TOP'      },
+  { href: '/mission',  label: 'MISSION'  },
+  { href: '/solution', label: 'SOLUTION' },
+  { href: '/service',  label: 'SERVICE'  },
+  { href: '/company',  label: 'COMPANY'  },
 ];
 ---
-<header class="fixed top-0 inset-x-0 z-40 bg-white border-b border-slate-100">
-  <div class="section-container flex items-center justify-between h-16">
-    <a href="/" class="flex items-center gap-3 font-display text-lg text-brand-dark">
-      <img src="/logo.png" alt="WAKU BUILD ロゴ" class="h-10 w-auto" loading="lazy" decoding="async" />
+
+<header
+  id="site-header"
+  class:list={[
+    'z-50',
+    isHome
+      ? 'absolute left-0 right-0 top-[8px] md:top-[50px]'
+      : 'relative bg-white shadow-[0_2px_20px_rgba(0,0,0,0.08)]',
+  ]}
+>
+
+  <!-- Desktop header: Figma positions — logo top:73px, nav/contact top:88–93px -->
+  <div
+    id="header-desktop"
+    class="hidden md:flex items-end justify-between"
+  >
+    <!-- Logo — navy blue, positioned in the white concave notch -->
+    <a href="/" class="shrink-0" aria-label="WAKU BUILD トップへ">
+      <img
+        id="header-logo"
+        src="/logo.svg"
+        alt="WAKU BUILD"
+        class="h-[clamp(40px,4.17vw,64px)] w-auto"
+        loading="eager"
+        decoding="async"
+      />
     </a>
-    <div class="hidden md:flex items-center gap-6">
-      <nav class="flex items-center gap-6 text-sm font-medium">
+
+    <!-- Desktop nav + CONTACT — right-aligned group -->
+    <div class="flex items-center gap-[clamp(16px,3.27vw,50px)]">
+      <nav class="flex items-center gap-[clamp(16px,3.27vw,50px)]" aria-label="メインナビゲーション">
         {navItems.map((item) => {
-          const active = pathname === item.href;
+          const active = pathname === item.href || pathname.startsWith(item.href + '/');
           return (
             <a
               href={item.href}
-              class={`nav-link ${active ? 'is-active' : ''}`}
+              class={`font-['Gill_Sans',sans-serif] font-semibold text-base tracking-wide transition-colors duration-200 ${isHome ? 'text-white' : 'text-primary'}${active ? '' : ' opacity-90 hover:opacity-100'}`}
             >
               {item.label}
             </a>
           );
         })}
       </nav>
-      <a href="/contact" class="header-cta inline-flex gap-2">
-        <span class="inline-flex h-6 w-6" aria-hidden="true">
-          <svg viewBox="0 0 24 24" class="h-full w-full fill-current" aria-hidden="true" focusable="false">
-            <path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25h14.5c.69 0 1.25.56 1.25 1.25v10.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25V6.75zm1.52.25 6.64 4.64a1 1 0 0 0 1.16 0L19.48 7H5.02zM19.5 17V8.34l-5.74 4a2.5 2.5 0 0 1-2.92 0l-5.74-4V17H19.5z"/>
-          </svg>
-        </span>
-        お問い合わせ
+
+      <!-- Desktop CONTACT pill -->
+      <a
+        href="/contact"
+        id="header-contact-btn"
+        class={`shrink-0 flex items-center justify-center rounded-full font-['Gill_Sans',sans-serif] font-semibold text-base tracking-wide transition-all duration-200 w-[clamp(120px,13.56vw,208px)] h-[clamp(36px,3.26vw,50px)] ${isHome ? 'bg-white text-primary hover:bg-accent' : 'bg-primary text-white hover:bg-primary-dark'}`}
+      >
+        CONTACT
       </a>
     </div>
-    <a href="/contact" class="header-cta hidden sm:inline-flex md:hidden gap-2">
-      <span class="inline-flex h-6 w-6" aria-hidden="true">
-        <svg viewBox="0 0 24 24" class="h-full w-full fill-current" aria-hidden="true" focusable="false">
-          <path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25h14.5c.69 0 1.25.56 1.25 1.25v10.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25V6.75zm1.52.25 6.64 4.64a1 1 0 0 0 1.16 0L19.48 7H5.02zM19.5 17V8.34l-5.74 4a2.5 2.5 0 0 1-2.92 0l-5.74-4V17H19.5z"/>
-        </svg>
-      </span>
-      お問い合わせ
-    </a>
-    <details class="md:hidden dropdown">
-      <summary class="list-none flex items-center justify-center h-10 w-10 rounded-lg border border-slate-200 shadow-sm">
-        <span class="sr-only">メニュー</span>
-        <div class="space-y-1">
-          <span class="block h-0.5 w-6 bg-slate-800"></span>
-          <span class="block h-0.5 w-6 bg-slate-800"></span>
-          <span class="block h-0.5 w-6 bg-slate-800"></span>
-        </div>
-      </summary>
-      <div class="absolute right-4 mt-2 w-48 rounded-xl border border-slate-100 bg-white shadow-xl p-3 space-y-1">
-        {navItems.map((item) => {
-          const active = pathname === item.href;
-          return (
-            <a
-              href={item.href}
-              class={`nav-link-mobile ${active ? 'is-active' : ''}`}
-            >
-              {item.label}
-            </a>
-          );
-        })}
-        <a href="/contact" class="btn-primary w-full justify-center text-center">無料相談</a>
-      </div>
-    </details>
   </div>
+
+  <!-- Mobile header bar -->
+  <div class="md:hidden flex items-center justify-between pl-[26px] pr-8 h-[80px]">
+    <a href="/" class="flex items-center shrink-0" aria-label="WAKU BUILD トップへ">
+      <img
+        id="header-logo-mobile"
+        src="/logo.svg"
+        alt="WAKU BUILD"
+        class="h-10 w-auto transition-[filter] duration-300"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
+
+    <!-- Mobile hamburger button -->
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      class={`flex flex-col justify-center items-center w-10 h-10 gap-2 rounded-lg focus:outline-none focus:ring-2 ${isHome ? 'focus:ring-white/50' : 'focus:ring-primary/40'}`}
+      aria-label="メニューを開く"
+    >
+      <span class={`block h-0.5 w-[25px] transition-all duration-200 ${isHome ? 'bg-white' : 'bg-primary'}`}></span>
+      <span class={`block h-0.5 w-[25px] transition-all duration-200 ${isHome ? 'bg-white' : 'bg-primary'}`}></span>
+      <span class={`block h-0.5 w-[25px] transition-all duration-200 ${isHome ? 'bg-white' : 'bg-primary'}`}></span>
+    </button>
+  </div>
+
 </header>
+
+<!-- Mobile full-screen overlay (outside <header> to cover everything) -->
+<div
+  id="mobile-menu"
+  class="md:hidden hidden fixed inset-0 z-[999] bg-primary"
+  aria-label="モバイルナビゲーション"
+  role="dialog"
+  aria-modal="true"
+>
+
+  <!-- X close button — top-right (Figma: top:42px, right:43px) -->
+  <button
+    id="mobile-menu-close"
+    type="button"
+    aria-label="メニューを閉じる"
+    class="absolute top-[42px] right-[43px] flex items-center justify-center w-[25px] h-[23px] focus:outline-none"
+  >
+    <svg width="25" height="23" viewBox="0 0 25 23" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="1.5" y1="1.5" x2="23.5" y2="21.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="23.5" y1="1.5" x2="1.5" y2="21.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <!-- Logo — centered, top:133px (Figma: left:152px w:76px on 375px canvas → centered) -->
+  <div class="absolute top-[133px] left-1/2 -translate-x-1/2">
+    <img
+      src="/logo.svg"
+      alt="WAKU BUILD"
+      class="w-[76px] h-auto brightness-0 invert"
+      loading="eager"
+      decoding="async"
+    />
+  </div>
+
+  <!-- Nav items — top:222px, each 43px apart (line-height:40px + 3px gap) -->
+  <nav
+    class="absolute top-[222px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-[3px]"
+    aria-label="モバイルメニュー"
+  >
+    {mobileNavItems.map((item) => {
+      const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href + '/'));
+      return (
+        <a
+          href={item.href}
+          class:list={[
+            "mobile-nav-link font-['Gill_Sans',sans-serif] font-semibold text-center text-white whitespace-nowrap transition-opacity duration-200 hover:opacity-70 text-base leading-10",
+            { 'opacity-70': active },
+          ]}
+        >
+          {item.label}
+        </a>
+      );
+    })}
+  </nav>
+
+  <!-- CONTACT button — top:458px, 218×47px, centered (Figma: left:81px on 375px canvas) -->
+  <a
+    href="/contact"
+    id="mobile-contact-btn"
+    class="absolute top-[458px] left-1/2 -translate-x-1/2 flex items-center justify-center rounded-full bg-white text-primary font-['Gill_Sans',sans-serif] font-semibold tracking-wide hover:bg-accent transition-colors duration-200 w-[218px] h-[47px] text-base"
+  >
+    CONTACT
+  </a>
+
+</div>
+
+<style>
+  /* Figma: logo left 5.93%, nav right 9.19% of viewport width */
+  #header-desktop {
+    padding-left: 5.93%;
+    padding-right: 9.19%;
+    padding-top: 18px;
+    padding-bottom: 14px;
+  }
+</style>
+
+<script>
+  // ── Mobile menu ──────────────────────────────────────────────
+  const toggle   = document.getElementById('mobile-menu-toggle');
+  const menu     = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('mobile-menu-close');
+
+  function openMenu() {
+    if (!menu || !toggle) return;
+    menu.classList.remove('hidden');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    if (!menu || !toggle) return;
+    menu.classList.add('hidden');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  toggle?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  // Close when a nav link inside the overlay is clicked
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+    }
+  });
+</script>

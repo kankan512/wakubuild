@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+
+const problems = [
+  '何から始めればいいかわからない',
+  '社内にIT人材がいない',
+  'コストが不明確で投資判断できない',
+  'ツール導入後に定着しない',
+];
+
+const solutions = [
+  {
+    number: '01',
+    title: 'DX伴走支援',
+    description: '経営と現場の間に立ち、課題ヒアリングから実装まで一緒に考え、一歩一歩前進します。DXは一度きりのプロジェクトではなく、継続的な改善プロセスです。',
+    link: '/service',
+    linkText: '詳しく見る',
+  },
+  {
+    number: '02',
+    title: 'AI活用研修',
+    description: '最新のAIを実務で活かすための社員向け研修を提供します。ツールの使い方だけでなく、AIと共に働く考え方まで丁寧に伝えます。',
+    link: null,
+    linkText: null,
+  },
+  {
+    number: '03',
+    title: 'システム開発',
+    description: '業務効率化のためのオーダーメイドシステム・スマートフォンアプリを開発します。小さく始めて、成長に合わせて拡張できる設計を大切にしています。',
+    link: null,
+    linkText: null,
+  },
+];
+
+const differentiators = [
+  {
+    title: '伴走型サポート',
+    description: '導入して終わりではなく、定着・改善まで一緒に取り組みます。',
+  },
+  {
+    title: '人×AI協働',
+    description: '人の知恵とAIの力を組み合わせ、最大の成果を引き出します。',
+  },
+  {
+    title: '中小企業専門',
+    description: '大企業向けの仕組みを押し付けず、現場に合ったDXを実現します。',
+  },
+];
+---
+
+<Layout
+  title="SOLUTION | WAKU BUILD"
+  description="WAKU BUILD（ワクビル）のソリューション。中小企業のDX課題をDX伴走支援・AI活用研修・システム開発で解決します。"
+  pathname="/solution"
+>
+  <PageHero title="SOLUTION" subtitle="課題を解決するDX" />
+
+  <!-- Intro section -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="section-container">
+      <SectionLabel label="SOLUTION" heading="ワクビルが解決する課題" />
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
+        <!-- Problem side -->
+        <div>
+          <p class="section-label text-slate-400 mb-4">PROBLEM</p>
+          <h3 class="font-sans font-bold text-xl md:text-2xl text-[#464646] mb-6">
+            中小企業のDX化が進まない理由
+          </h3>
+          <ul class="space-y-3">
+            {problems.map((problem) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-1 w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center shrink-0">
+                  <span class="w-2 h-2 rounded-full bg-slate-400 block"></span>
+                </span>
+                <p class="font-sans text-[#464646] text-base">{problem}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Solution side -->
+        <div class="rounded-2xl bg-primary p-8 md:p-10">
+          <p class="section-label text-white/70 mb-4">SOLUTION</p>
+          <h3 class="font-sans font-bold text-xl md:text-2xl text-white mb-4">
+            ワクビルの伴走型アプローチ
+          </h3>
+          <p class="font-sans text-white/80 text-base leading-relaxed">
+            ワクビルは、これらの課題に対して「伴走型」で向き合います。答えを押し付けるのではなく、現場に寄り添いながら一緒に考え、着実に前進することを大切にしています。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution cards -->
+  <section class="py-16 md:py-24 bg-subtle">
+    <div class="section-container">
+      <SectionLabel label="SERVICE" heading="3つのソリューション" align="center" />
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {solutions.map((solution) => (
+          <div class="bg-white rounded-2xl p-8 shadow-sm flex flex-col">
+            <span class="font-display font-bold text-2xl text-accent mb-4">{solution.number}</span>
+            <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-3">{solution.title}</h3>
+            <p class="font-sans text-sm text-slate-500 leading-relaxed flex-1">{solution.description}</p>
+            {solution.link && (
+              <a
+                href={solution.link}
+                class="mt-6 self-start text-primary font-display font-semibold text-sm tracking-wide hover:underline"
+              >
+                {solution.linkText} →
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why WAKU BUILD -->
+  <section class="py-16 md:py-24 bg-primary">
+    <div class="section-container">
+      <SectionLabel
+        label="WHY WAKU BUILD"
+        heading="選ばれる3つの理由"
+        labelClass="text-white/70"
+        headingClass="text-white"
+        align="center"
+      />
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {differentiators.map((item, i) => (
+          <div class="text-center">
+            <span class="block font-display font-bold text-5xl text-accent mb-4">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 class="font-sans font-bold text-xl text-white mb-3">{item.title}</h3>
+            <p class="font-sans text-white/70 text-sm leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA section -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="section-container text-center">
+      <p class="section-label mb-4">CONTACT</p>
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-primary mb-8">お問い合わせはこちら</h2>
+      <a href="/contact" class="btn-primary">
+        CONTACTへ
+      </a>
+    </div>
+  </section>
+</Layout>

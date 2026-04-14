@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+
+const services = [
+  {
+    number: '01',
+    title: 'DX伴走支援/社外CTO',
+    description: '経営と現場の間に立ち、伴走型でDXを推進します。「何から始めればよいかわからない」という状態から一緒に考え、課題の整理・ロードマップの策定・実施サポートまで全工程を支援します。社外CTOとして経営会議への参加や技術顧問としての活動も対応可能です。',
+    features: [
+      '課題ヒアリング・現状分析',
+      'DXロードマップ作成',
+      '実施伴走・進捗管理',
+      '社外CTO支援',
+    ],
+    image: '/top/service-1.jpg',
+    imageAlt: 'DX伴走支援のイメージ',
+    imageRight: true,
+  },
+  {
+    number: '02',
+    title: 'AIリスキリング研修',
+    description: '最新のAIを実務で活かすための社員向け研修を提供します。ChatGPTや画像生成AIなど、実際の業務に使えるツールの活用方法を、ハンズオン形式で丁寧に伝えます。「なんとなく知っている」から「実際に使える」へ。全社的なAIリテラシー向上をサポートします。',
+    features: [
+      'ChatGPT活用研修',
+      '業務自動化ツール導入支援',
+      'AI活用ワークショップ',
+    ],
+    image: '/top/service-2.jpg',
+    imageAlt: 'AIリスキリング研修のイメージ',
+    imageRight: false,
+  },
+  {
+    number: '03',
+    title: 'システム/アプリ開発',
+    description: '業務効率化のためのオーダーメイドシステムやスマートフォンアプリを開発します。既存の汎用ツールでは解決できない独自の業務課題に対して、現場に最適化されたシステムを提供します。AIチャットBotの導入も対応しており、問い合わせ対応や社内FAQ自動化などに活用できます。',
+    features: [
+      '業務システム開発',
+      'スマートフォンアプリ開発',
+      'AIチャットBot導入',
+    ],
+    image: '/top/service-2.jpg',
+    imageAlt: 'システム/アプリ開発のイメージ',
+    imageRight: true,
+  },
+];
+
+const products = [
+  {
+    title: '議事録革命',
+    description: 'AIが会議の音声を自動で文字起こし・要約。議事録作成の時間を大幅に削減します。',
+    image: '/top/service-1.jpg',
+  },
+  {
+    title: 'しあわせ日報',
+    description: '従業員の日々の報告をAIが分析。マネジメントの質を向上させる日報ツールです。',
+    image: '/top/service-2.jpg',
+  },
+];
+---
+
+<Layout
+  title="SERVICE | WAKU BUILD"
+  description="WAKU BUILD（ワクビル）のサービス詳細。DX伴走支援/社外CTO、AIリスキリング研修、システム/アプリ開発を提供しています。"
+  pathname="/service"
+>
+  <PageHero title="SERVICE" subtitle="提供するサービス" />
+
+  <!-- Service sections -->
+  {services.map((service) => (
+    <section class="py-16 md:py-24 bg-white">
+      <div class="section-container">
+        <div class={`flex flex-col ${service.imageRight ? 'md:flex-row' : 'md:flex-row-reverse'} gap-10 md:gap-16 items-center`}>
+          <!-- Image -->
+          <div class="w-full md:w-1/2">
+            <div class="relative overflow-hidden rounded-2xl">
+              <img
+                src={service.image}
+                alt={service.imageAlt}
+                class="w-full h-64 md:h-80 object-cover rounded-2xl"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+
+          <!-- Text -->
+          <div class="w-full md:w-1/2 space-y-6">
+            <SectionLabel
+              label={service.number}
+              heading={service.title}
+            />
+            <p class="font-sans text-[#464646] text-base leading-relaxed">
+              {service.description}
+            </p>
+            <ul class="space-y-2">
+              {service.features.map((feature) => (
+                <li class="flex items-center gap-3">
+                  <span class="w-5 h-5 rounded-full bg-accent flex items-center justify-center shrink-0">
+                    <span class="w-2 h-0.5 bg-primary block"></span>
+                  </span>
+                  <span class="font-sans text-[#464646] text-sm font-medium">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Divider -->
+  <div class="bg-subtle h-1 mx-4 md:mx-8 rounded-full"></div>
+
+  <!-- Products section -->
+  <section class="my-8 mx-4 md:mx-8 bg-accent rounded-[50px] py-16 md:py-[60px]">
+    <div class="section-container">
+      <SectionLabel
+        label="製品情報"
+        heading="PRODUCTS"
+        headingClass="text-primary font-display"
+        headingSize="2xl"
+      />
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {products.map((product) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+            <div class="relative h-48 md:h-56">
+              <img
+                src={product.image}
+                class="w-full h-full object-cover"
+                alt={product.title}
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="absolute top-4 left-4 bg-primary text-white text-xs font-display font-semibold px-3 py-1 rounded-full">
+                SaaS
+              </span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-sans font-bold text-[#464646]">{product.title}</h3>
+              <p class="mt-2 text-sm text-slate-500">{product.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA section -->
+  <section class="py-16 md:py-24 bg-primary">
+    <div class="section-container text-center">
+      <p class="section-label text-white/70 mb-4">CONTACT</p>
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-8">お問い合わせはこちら</h2>
+      <a href="/contact" class="btn-outline">
+        CONTACTへ
+      </a>
+    </div>
+  </section>
+</Layout>

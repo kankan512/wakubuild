@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+
+const values = [
+  {
+    number: '01',
+    title: 'やってみる',
+    description: 'まずは行動。試して、学んで、また動く。',
+  },
+  {
+    number: '02',
+    title: '自分が楽しむ',
+    description: '楽しんで働く人が、最もよい仕事をする。',
+  },
+  {
+    number: '03',
+    title: '相手を楽しませる',
+    description: 'お客様、仲間、関わる全ての人を楽しませる。',
+  },
+  {
+    number: '04',
+    title: 'みんなで成長する',
+    description: '一人の成長を、みんなの成長にする。',
+  },
+];
+---
+
+<Layout
+  title="MISSION | WAKU BUILD"
+  description="WAKU BUILD（ワクビル）のミッション・ビジョン・バリュー。人とAIが協力し、毎日をより豊かに楽しくすることをミッションとして掲げています。"
+  pathname="/mission"
+>
+  <PageHero title="MISSION" subtitle="わくわくを創る" />
+
+  <!-- Mission section -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="section-container">
+      <SectionLabel
+        label="MISSION"
+        heading="わくわくを創る"
+        description="人とAIが協力し、毎日をより豊かに楽しくすることをミッションとして掲げています。"
+      />
+    </div>
+  </section>
+
+  <!-- Vision section -->
+  <section class="py-16 md:py-24 bg-subtle">
+    <div class="section-container">
+      <div class="rounded-3xl bg-white p-10 md:p-16 shadow-sm">
+        <p class="section-label mb-3">VISION</p>
+        <p class="font-sans font-bold text-3xl md:text-4xl lg:text-5xl text-[#464646] leading-tight">
+          全ての働く人たちが、自分の価値を認め、可能性を信じ、未来に胸踊らせる社会
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values section -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="section-container">
+      <SectionLabel label="VALUE" heading="私たちの価値観" />
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {values.map((value) => (
+          <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <span class="block font-display font-bold text-2xl text-accent mb-3">{value.number}</span>
+            <h3 class="font-sans font-bold text-xl md:text-2xl text-primary mb-2">{value.title}</h3>
+            <p class="font-sans text-sm text-slate-500 leading-relaxed">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA section -->
+  <section class="py-16 md:py-24 bg-primary">
+    <div class="section-container text-center">
+      <p class="section-label text-white/70 mb-4">CONTACT</p>
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-8">お問い合わせはこちら</h2>
+      <a href="/contact" class="btn-outline">
+        CONTACTへ
+      </a>
+    </div>
+  </section>
+</Layout>

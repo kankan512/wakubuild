@@ -1,16 +1,82 @@
-<footer class="bg-black text-slate-100 py-12">
-  <div class="section-container grid gap-8 md:grid-cols-2 items-start">
-    <div>
-      <div class="flex items-center gap-3 text-lg font-display">
-        <img src="/logo.png" alt="WAKU BUILD ロゴ" class="h-10 w-auto bg-white rounded-md p-1" loading="lazy" decoding="async" />
+---
+---
+<!--
+  Footer — Figma node 1:893
+  Dome arch: SVG cubic-bezier (Figma Union は幅2726pxの超広いシェイプ → border-radius では再現不可)
+  Yellow ellipse top-right, nav + CONTACT on single row.
+-->
+<div class="relative">
+
+  <!-- Yellow decorative ellipse — SP: Figma node 1:673 -->
+  <img src="/shape/shape_yellow.svg" class="md:hidden pointer-events-none select-none absolute z-[1] top-6 right-[-30px] w-[111px] h-[89px]" aria-hidden="true" />
+  <!-- Yellow decorative ellipse — PC -->
+  <img src="/shape/shape_yellow.svg" class="pointer-events-none select-none hidden md:block absolute top-[-10px] right-[80px] z-[1] w-[192px] h-[152px]" aria-hidden="true" />
+
+  <!-- SVG dome arch: smooth cubic-bezier curve, matches Figma Union top edge -->
+  <svg
+    viewBox="0 0 100 7"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="block w-full h-[72px]"
+    aria-hidden="true"
+  >
+    <path d="M0,7 C30,0 70,0 100,7 L100,7 L0,7 Z" fill="#334c9c" />
+  </svg>
+
+  <!-- Footer body (no border-radius — arch is handled by SVG above) -->
+  <footer class="relative bg-primary -mt-px">
+    <div class="section-container" style="padding-top: 40px; padding-bottom: 56px;">
+
+      <!-- Logo + company name -->
+      <div class="flex flex-col items-center mb-[54px]">
+        <img
+          src="/logo.svg"
+          alt="WAKU BUILD ロゴ"
+          class="w-[120px] h-auto mb-[22px] brightness-0 invert"
+          loading="lazy"
+          decoding="async"
+        />
+        <p class="font-display font-medium text-white text-[16px] md:text-xl tracking-wide">
+          ワクビル株式会社
+        </p>
       </div>
-      <ul class="mt-4 space-y-2 text-sm">
-        <li><a href="/" class="text-white underline hover:no-underline hover:text-white">トップ</a></li>
-        <li><a href="/services" class="text-white underline hover:no-underline hover:text-white">サービス</a></li>
-        <li><a href="/about" class="text-white underline hover:no-underline hover:text-white">会社情報</a></li>
-        <li><a href="/contact" class="text-white underline hover:no-underline hover:text-white">お問い合わせ</a></li>
-      </ul>
+
+      <!-- Company description -->
+      <p class="text-white text-center mb-8 max-w-lg mx-auto leading-relaxed text-[16px] md:text-[18px]">
+        ワクビル株式会社は、人×AIの協働でDXを推進し、<br class="hidden sm:inline" />
+        すべての働く人のワクワクをかなえる会社です。
+      </p>
+
+      <!-- Nav links + CONTACT — SP: vertical column, Desktop: single horizontal row -->
+      <nav
+        class="flex flex-col items-center gap-y-[3px] md:flex-row md:justify-center md:items-center md:gap-x-8 mb-6 md:mb-12"
+        aria-label="フッターナビゲーション"
+      >
+        <a href="/"        class="font-display font-semibold tracking-widest text-white hover:text-accent transition-colors duration-200 text-[16px] md:text-[18px] leading-10">TOP</a>
+        <a href="/mission" class="font-display font-semibold tracking-widest text-white hover:text-accent transition-colors duration-200 text-[16px] md:text-[18px] leading-10">MISSION</a>
+        <a href="/solution" class="font-display font-semibold tracking-widest text-white hover:text-accent transition-colors duration-200 text-[16px] md:text-[18px] leading-10">SOLUTION</a>
+        <a href="/service"  class="font-display font-semibold tracking-widest text-white hover:text-accent transition-colors duration-200 text-[16px] md:text-[18px] leading-10">SERVICE</a>
+        <a href="/company"  class="font-display font-semibold tracking-widest text-white hover:text-accent transition-colors duration-200 text-[16px] md:text-[18px] leading-10">COMPANY</a>
+        <!-- CONTACT: Desktop のみ nav と同じ行に表示 -->
+        <a
+          href="/contact"
+          class="hidden md:inline-flex items-center justify-center rounded-full bg-white text-primary font-display font-semibold tracking-wide hover:bg-accent transition-colors duration-200 w-[218px] h-[47px] text-[18px]"
+        >CONTACT</a>
+      </nav>
+
+      <!-- CONTACT button — SP のみ -->
+      <div class="flex justify-center mt-6 mb-12 md:hidden">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center rounded-full bg-white text-primary font-display font-semibold tracking-wide hover:bg-accent transition-colors duration-200 w-[218px] h-[47px] text-base"
+        >CONTACT</a>
+      </div>
+
+      <!-- Copyright -->
+      <p class="text-white text-xs text-center tracking-wide">
+        &copy;WAKUBUILD All rights reserved.
+      </p>
+
     </div>
-  </div>
-  <div class="section-container mt-8 text-xs text-slate-500 text-center">© {new Date().getFullYear()} WAKU BUILD Inc. All rights reserved.</div>
-</footer>
+  </footer>
+</div>

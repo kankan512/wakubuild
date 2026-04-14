@@ -1,0 +1,40 @@
+---
+import DecorativeEllipse from './DecorativeEllipse.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  description?: string;
+}
+
+const { title, subtitle, description } = Astro.props;
+---
+
+<section class="relative w-full overflow-hidden bg-primary min-h-[280px] md:min-h-[360px]">
+  <!-- Decorative ellipse — top-right -->
+  <div class="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 pointer-events-none select-none">
+    <DecorativeEllipse color="rgba(255,255,255,0.10)" />
+  </div>
+
+  <!-- Secondary ellipse — bottom-left, subtle -->
+  <div class="absolute bottom-0 left-0 -translate-x-1/4 translate-y-1/4 pointer-events-none select-none">
+    <DecorativeEllipse color="rgba(255,255,255,0.06)" />
+  </div>
+
+  <div class="section-container relative z-10 flex flex-col justify-end pb-12 pt-[140px]">
+    <h1 class="text-5xl md:text-7xl font-display font-bold text-white leading-none tracking-wide">
+      {title}
+    </h1>
+    {subtitle && (
+      <p class="text-xl md:text-2xl font-sans text-white/80 mt-3 leading-snug">
+        {subtitle}
+      </p>
+    )}
+    {description && (
+      <p class="mt-2 text-base text-white/60 max-w-xl leading-relaxed">
+        {description}
+      </p>
+    )}
+  </div>
+</section>
+

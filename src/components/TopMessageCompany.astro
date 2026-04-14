@@ -1,0 +1,74 @@
+---
+// MESSAGE + COMPANY — Figma node 1:892
+// Two side-by-side nav cards
+// MESSAGE: bg #f7f7f5, person photo right, blue text left
+// COMPANY: office photo bg at opacity-40, blue text left
+// SP: stacked vertically, h:191px/201px, rounded-[15px], heading 32px, sub 12px
+---
+
+<section class="bg-white py-16 md:py-24">
+  <div class="section-container max-w-[1360px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+      <!-- MESSAGE box -->
+      <a
+        href="/message"
+        class="relative overflow-hidden block hover:opacity-90 transition-opacity h-[191px] rounded-[15px] md:h-[382px] md:rounded-[30px] bg-subtle shadow-[0_8px_40px_rgba(0,0,0,0.08)]"
+      >
+        <!-- Person photo: right side, overflows top of card -->
+        <div
+          class="absolute bottom-0 left-0 w-full h-full pointer-events-none select-none bg-[#F8F8F6]"
+          aria-hidden="true"
+        >
+          <img
+            src="/top/banner-1.png"
+            alt=""
+            class="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <!-- Text: left side, vertically centered -->
+        <div class="relative z-10 flex flex-col justify-center h-[191px] md:h-[382px] pl-[clamp(24px,5vw,56px)]">
+          <h2
+            class="font-display font-semibold text-primary leading-none text-[clamp(32px,calc(23px_+_2.4vw),60px)]"
+          >
+            MESSAGE
+          </h2>
+          <p class="font-sans font-bold text-primary mt-1 text-[12px] md:text-[20px]">
+            代表挨拶
+          </p>
+        </div>
+      </a>
+
+      <!-- COMPANY box -->
+      <a
+        href="/company"
+        class="relative overflow-hidden block hover:opacity-90 transition-opacity h-[201px] rounded-[15px] md:h-[382px] md:rounded-[30px] shadow-[0_8px_40px_rgba(0,0,0,0.08)]"
+      >
+        <!-- Background image at opacity-40 (Figma: opacity-40, no blue overlay) -->
+        <img
+          src="/figma/company-bg.png"
+          alt=""
+          class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <!-- Text: left side, vertically centered -->
+        <div class="relative z-10 flex flex-col justify-center h-[201px] md:h-[382px] pl-[clamp(24px,5vw,56px)]">
+          <h2
+            class="font-display font-semibold text-primary leading-none text-[clamp(32px,calc(23px_+_2.4vw),60px)]"
+          >
+            COMPANY
+          </h2>
+          <p class="font-sans font-bold text-primary mt-1 text-[12px] md:text-[20px]">
+            会社情報
+          </p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
