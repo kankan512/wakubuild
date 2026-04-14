@@ -88,8 +88,8 @@ const values = ['自分が楽しむ', '相手を楽しませる', 'みんなで�
     Top padding: 137px at 1534px ≈ 9vw, clamped 80px–140px
     Bottom margin to VALUE: 231px at 1534px ≈ 15vw, clamped 60px–231px
   -->
-  <div class="section-container relative z-10 text-center mt-[-60px] mb-[clamp(48px,14.2vw,218px)]">
-    <p class="section-label text-primary mb-3 text-[clamp(16px,calc(12.8px_+_0.86vw),26px)] leading-10">
+  <div class="section-container relative z-10 text-center mt-[-60px] mb-10 md:mb-[clamp(48px,14.2vw,218px)]">
+    <p class="section-label text-primary mb-0 md:mb-3 text-[clamp(16px,calc(12.8px_+_0.86vw),26px)] leading-10">
       MISSION
     </p>
     <h2
@@ -100,12 +100,12 @@ const values = ['自分が楽しむ', '相手を楽しませる', 'みんなで�
     </h2>
   </div>
 
-  <!-- Mobile: image between MISSION and VALUE (SP: top:829px, centered, diameter≈190px) -->
+  <!-- Mobile: image between MISSION and VALUE -->
   <div class="relative z-10 flex justify-center md:hidden px-6 mb-10">
     <img
-      src="/top/mission-2.png"
+      src="/top/mission-1.png"
       alt=""
-      class="w-[190px]"
+      class="w-[190px] aspect-square object-cover object-top grayscale"
       loading="lazy"
       decoding="async"
     />
@@ -116,8 +116,8 @@ const values = ['自分が楽しむ', '相手を楽しませる', 'みんなで�
     47px font, line-height 1.8, three lines
     Bottom padding: keep reasonable space below last value
   -->
-  <div class="section-container relative z-10 text-center">
-    <p class="section-label text-primary mb-4 text-[clamp(16px,calc(12.8px_+_0.86vw),26px)] leading-10">
+  <div class="section-container relative z-10 text-center pb-10 md:pb-0">
+    <p class="section-label text-primary mb-0 md:mb-3 text-[clamp(16px,calc(12.8px_+_0.86vw),26px)] leading-10">
       VALUE
     </p>
     <div>

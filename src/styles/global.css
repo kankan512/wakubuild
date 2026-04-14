@@ -41,8 +41,11 @@
   :root {
     color-scheme: light;
   }
+  html {
+    overflow-x: hidden;
+  }
   body {
-    @apply font-sans bg-white text-[#464646] leading-relaxed;
+    @apply font-sans bg-white text-[#464646] leading-relaxed overflow-x-hidden;
   }
 
   a {
