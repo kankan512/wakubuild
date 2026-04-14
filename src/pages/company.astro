@@ -1,13 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import SectionLabel from '../components/SectionLabel.astro';
 
 const overviewItems = [
-  { label: '社名', value: 'WAKU BUILD（ワクビル）株式会社' },
+  { label: '社名',     value: 'WAKU BUILD（ワクビル）株式会社' },
   { label: '代表取締役', value: '田中 和志' },
-  { label: '設立', value: '2025年6月' },
-  { label: '所在地', value: '〒530-0001大阪府大阪市北区梅田1丁目2番2号大阪駅前第2ビル12-12' },
+  { label: '設立',     value: '2025年6月' },
+  { label: '所在地',   value: '〒530-0001 大阪府大阪市北区梅田1丁目2番2号 大阪駅前第2ビル12-12' },
   { label: '事業内容', value: 'DX伴走支援 / AIリスキリング研修 / システム・アプリ開発' },
 ];
 
@@ -19,20 +18,20 @@ const timeline = [
 
 <Layout
   title="COMPANY | WAKU BUILD"
-  description="WAKU BUILD（ワクビル）株式会社の会社概要、代表メッセージ、沿革をご紹介します。"
+  description="WAKU BUILD（ワクビル）株式会社の会社概要・沿革をご紹介します。"
   pathname="/company"
 >
-  <PageHero title="COMPANY" subtitle="ワクビル株式会社" />
+  <PageHero title="COMPANY" subtitle="会社情報" />
 
   <!-- 会社概要 -->
   <section class="py-16 md:py-24 bg-white">
     <div class="section-container">
-      <SectionLabel label="OVERVIEW" heading="会社概要" />
-
-      <dl class="mt-10 max-w-3xl">
+      <p class="section-label mb-1">OVERVIEW</p>
+      <p class="font-sans font-bold text-[#464646] text-2xl md:text-3xl mb-8">会社概要</p>
+      <dl class="max-w-2xl">
         {overviewItems.map((item) => (
-          <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 py-4 border-b border-slate-200">
-            <dt class="font-sans text-sm text-slate-400 sm:w-28 shrink-0 pt-0.5">{item.label}</dt>
+          <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 py-5 border-b border-[#464646]">
+            <dt class="font-sans font-bold text-sm text-primary sm:w-28 shrink-0 pt-0.5">{item.label}</dt>
             <dd class="font-sans text-[#464646] text-base">{item.value}</dd>
           </div>
         ))}
@@ -40,57 +39,20 @@ const timeline = [
     </div>
   </section>
 
-  <!-- 代表メッセージ -->
-  <section class="py-16 md:py-24 bg-subtle">
-    <div class="section-container">
-      <SectionLabel label="MESSAGE" heading="代表メッセージ" />
-
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-        <!-- Photo -->
-        <div class="relative">
-          <!-- TODO: 代表写真に差し替えてください -->
-          <img
-            src="/top/service-2.jpg"
-            alt="代表取締役 田中 和志"
-            class="w-full max-w-sm mx-auto md:mx-0 rounded-2xl object-cover aspect-[4/5]"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-
-        <!-- Message text -->
-        <div class="space-y-6">
-          <p class="font-sans text-[#464646] text-base md:text-lg leading-relaxed">
-            私たちはDXという言葉が当たり前になった今も、多くの中小企業が取り残されていることを知っています。複雑な技術よりも、現場に寄り添い、共に考え、一歩一歩前進すること。それがワクビルの伴走スタイルです。
-          </p>
-          <p class="font-sans text-[#464646] text-base leading-relaxed">
-            人とAIが協力することで、働くことがもっと楽しく、もっと豊かになる。そんな未来を一緒に作っていきたいと思っています。まずはお気軽にご相談ください。
-          </p>
-          <div class="border-l-4 border-accent pl-4">
-            <p class="font-sans font-bold text-xl text-[#464646]">田中 和志</p>
-            <p class="font-sans text-sm text-slate-500 mt-0.5">代表取締役</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- 沿革 -->
-  <section class="py-16 md:py-24 bg-white">
+  <section class="py-16 md:py-24 bg-[#f7f7f5]">
     <div class="section-container">
-      <SectionLabel label="HISTORY" heading="沿革" />
-
-      <ol class="mt-10 max-w-2xl">
+      <p class="section-label mb-1">HISTORY</p>
+      <p class="font-sans font-bold text-[#464646] text-2xl md:text-3xl mb-8">沿革</p>
+      <ol class="max-w-xl">
         {timeline.map((item, i) => (
           <li class="relative flex gap-8 pb-8">
-            <!-- Dot + vertical line column -->
             <div class="shrink-0 flex flex-col items-center w-4">
               <div class="w-4 h-4 rounded-full bg-accent mt-1.5 shrink-0"></div>
               {i < timeline.length - 1 && (
                 <div class="flex-1 w-0.5 bg-slate-200 mt-2"></div>
               )}
             </div>
-            <!-- Content -->
             <div>
               <span class="font-display font-bold text-sm text-primary tracking-wider">{item.year}</span>
               <p class="mt-1 font-sans text-[#464646] text-base">{item.text}</p>
@@ -101,14 +63,14 @@ const timeline = [
     </div>
   </section>
 
-  <!-- CTA section -->
-  <section class="py-16 md:py-24 bg-primary">
-    <div class="section-container text-center">
-      <p class="section-label text-white/70 mb-4">CONTACT</p>
-      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-8">お問い合わせはこちら</h2>
-      <a href="/contact" class="btn-outline">
-        CONTACTへ
-      </a>
+  <!-- CTA -->
+  <section class="bg-white mt-8 py-16 md:py-24">
+    <div class="section-container">
+      <div class="bg-accent rounded-3xl py-16 md:py-20 px-8 text-center max-w-4xl mx-auto">
+        <p class="section-label mb-4">CONTACT</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-[#464646] mb-8">お問い合わせはこちら</h2>
+        <a href="/contact" class="btn-primary">CONTACTへ</a>
+      </div>
     </div>
   </section>
 </Layout>

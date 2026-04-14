@@ -3,9 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import ContactForm from '../components/ContactForm.astro';
 ---
-<Layout title="CONTACT | WAKU BUILD" description="ワクビルへのお問い合わせはこちらから。" pathname="/contact">
+
+<Layout
+  title="CONTACT | WAKU BUILD"
+  description="WAKU BUILD（ワクビル）へのお問い合わせはこちらから。DX伴走支援・AIリスキリング研修・システム開発など、まずはお気軽にご相談ください。"
+  pathname="/contact"
+>
   <PageHero title="CONTACT" subtitle="お問い合わせ" />
-  <section class="section-container py-16 md:py-24 max-w-2xl">
-    <ContactForm />
+  <section class="py-16 md:py-24 bg-white">
+    <div class="section-container max-w-2xl">
+      <ContactForm />
+    </div>
   </section>
 </Layout>

@@ -13,8 +13,8 @@ const navItems = [
 const mobileNavItems = [
   { href: '/',         label: 'TOP'      },
   { href: '/mission',  label: 'MISSION'  },
-  { href: '/solution', label: 'SOLUTION' },
-  { href: '/service',  label: 'SERVICE'  },
+  { href: '/service',  label: 'PRODUCTS' },
+  { href: '/message',  label: 'MESSAGE'  },
   { href: '/company',  label: 'COMPANY'  },
 ];
 ---
@@ -40,7 +40,7 @@ const mobileNavItems = [
         id="header-logo"
         src="/logo.svg"
         alt="WAKU BUILD"
-        class="h-[64px] w-auto"
+        class={`w-auto ${isHome ? 'h-[64px]' : 'h-[44px]'}`}
         loading="eager"
         decoding="async"
       />
