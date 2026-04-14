@@ -28,13 +28,10 @@ const mobileNavItems = [
       : 'relative bg-white shadow-[0_2px_20px_rgba(0,0,0,0.08)]',
   ]}
 >
-
-  <!-- Desktop header: Figma positions — logo top:73px, nav/contact top:88–93px -->
   <div
     id="header-desktop"
-    class="hidden md:flex items-end justify-between"
+    class="hidden md:flex items-center justify-between"
   >
-    <!-- Logo — navy blue, positioned in the white concave notch -->
     <a href="/" class="shrink-0" aria-label="WAKU BUILD トップへ">
       <img
         id="header-logo"
@@ -46,7 +43,6 @@ const mobileNavItems = [
       />
     </a>
 
-    <!-- Desktop nav + CONTACT — right-aligned group -->
     <div class="flex items-center gap-[clamp(16px,3.27vw,50px)]">
       <nav class="flex items-center gap-[clamp(16px,3.27vw,50px)]" aria-label="メインナビゲーション">
         {navItems.map((item) => {
@@ -54,7 +50,12 @@ const mobileNavItems = [
           return (
             <a
               href={item.href}
-              class={`font-['Gill_Sans',sans-serif] font-semibold text-base tracking-wide transition-colors duration-200 ${isHome ? 'text-white' : 'text-primary'}${active ? '' : ' opacity-90 hover:opacity-100'}`}
+              class:list={[
+                `font-['Gill_Sans',sans-serif] font-semibold text-base tracking-wide`,
+                isHome
+                  ? `inline-block transition-all duration-200 hover:-translate-y-0.5 active:scale-95 hover:text-accent text-white${active ? '' : ' opacity-90'}`
+                  : `nav-link text-primary${active ? ' is-active' : ''}`,
+              ]}
             >
               {item.label}
             </a>
@@ -62,7 +63,6 @@ const mobileNavItems = [
         })}
       </nav>
 
-      <!-- Desktop CONTACT pill -->
       <a
         href="/contact"
         id="header-contact-btn"
@@ -73,7 +73,6 @@ const mobileNavItems = [
     </div>
   </div>
 
-  <!-- Mobile header bar -->
   <div class="md:hidden flex items-center justify-between pl-[26px] pr-8 h-[80px]">
     <a href="/" class="flex items-center shrink-0" aria-label="WAKU BUILD トップへ">
       <img
@@ -86,7 +85,6 @@ const mobileNavItems = [
       />
     </a>
 
-    <!-- Mobile hamburger button -->
     <button
       id="mobile-menu-toggle"
       type="button"
@@ -103,7 +101,6 @@ const mobileNavItems = [
 
 </header>
 
-<!-- Mobile full-screen overlay (outside <header> to cover everything) -->
 <div
   id="mobile-menu"
   class="md:hidden hidden fixed inset-0 z-[998] bg-primary"
@@ -111,8 +108,6 @@ const mobileNavItems = [
   role="dialog"
   aria-modal="true"
 >
-
-  <!-- Logo — centered, top:133px (Figma: left:152px w:76px on 375px canvas → centered) -->
   <div class="absolute top-[133px] left-1/2 -translate-x-1/2">
     <img
       src="/logo.svg"
@@ -123,7 +118,6 @@ const mobileNavItems = [
     />
   </div>
 
-  <!-- Nav items — top:222px, each 43px apart (line-height:40px + 3px gap) -->
   <nav
     class="absolute top-[222px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-[3px]"
     aria-label="モバイルメニュー"
@@ -144,7 +138,6 @@ const mobileNavItems = [
     })}
   </nav>
 
-  <!-- CONTACT button — top:458px, 218×47px, centered (Figma: left:81px on 375px canvas) -->
   <a
     href="/contact"
     id="mobile-contact-btn"
@@ -152,11 +145,9 @@ const mobileNavItems = [
   >
     CONTACT
   </a>
-
 </div>
 
 <style>
-  /* Figma: logo left 5.93%, nav right 9.19% of viewport width */
   #header-desktop {
     padding-left: 5.93%;
     padding-right: 9.19%;
@@ -164,28 +155,23 @@ const mobileNavItems = [
     padding-bottom: 14px;
   }
 
-  /* Hamburger → X animation */
   #mobile-menu-toggle span {
     transition: transform 0.3s ease, opacity 0.3s ease;
     transform-origin: center;
   }
-  /* bar 1: translate down + rotate 45° */
   #mobile-menu-toggle[aria-expanded="true"] span:nth-child(1) {
     transform: translateY(10px) rotate(45deg);
   }
-  /* bar 2: fade out */
   #mobile-menu-toggle[aria-expanded="true"] span:nth-child(2) {
     opacity: 0;
     transform: scaleX(0);
   }
-  /* bar 3: translate up + rotate -45° */
   #mobile-menu-toggle[aria-expanded="true"] span:nth-child(3) {
     transform: translateY(-10px) rotate(-45deg);
   }
 </style>
 
 <script>
-  // ── Mobile menu ──────────────────────────────────────────────
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu   = document.getElementById('mobile-menu');
 
@@ -213,12 +199,10 @@ const mobileNavItems = [
 
   toggle?.addEventListener('click', toggleMenu);
 
-  // Close when a nav link inside the overlay is clicked
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
       closeMenu();

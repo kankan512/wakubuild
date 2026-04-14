@@ -55,11 +55,11 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full text-white bg-primary hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all duration-200 font-semibold;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full text-white bg-primary hover:bg-primary-dark hover:-translate-y-0.5 active:scale-95 shadow-lg shadow-primary/20 transition-all duration-200 font-semibold;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-white border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 font-semibold;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-white border border-primary text-primary hover:bg-primary hover:text-white hover:-translate-y-0.5 active:scale-95 transition-all duration-200 font-semibold;
   }
 
   .section-container {
