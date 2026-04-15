@@ -1,0 +1,26 @@
+---
+// VALUE section — Figma: white bg, centered, 47px Noto Sans, 3 values only
+const values = [
+  '自分が楽しむ',
+  '相手を楽しませる',
+  'みんなで成長する',
+];
+---
+
+<section class="bg-white py-20 md:py-28">
+  <div class="section-container">
+    <!-- "VALUE" label centered -->
+    <p class="section-label text-primary text-center mb-4 text-[26px] leading-10">
+      VALUE
+    </p>
+
+    <!-- 3 values at 47px, centered -->
+    <div class="text-center space-y-2">
+      {values.map((v) => (
+        <p class="font-sans font-semibold text-[#464646] leading-[1.8] text-[clamp(24px,3vw,47px)]">
+          {v}
+        </p>
+      ))}
+    </div>
+  </div>
+</section>

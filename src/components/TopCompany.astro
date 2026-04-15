@@ -1,0 +1,41 @@
+---
+import SectionLabel from './SectionLabel.astro';
+---
+
+<section class="py-20 md:py-28 bg-white">
+  <div class="section-container">
+    <div class="rounded-3xl overflow-hidden relative min-h-[340px]">
+      <!-- Background image with overlay -->
+      <div class="absolute inset-0">
+        <img
+          src="/top/banner-2.png"
+          class="w-full h-full object-cover"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="absolute inset-0 bg-primary/60"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="relative z-10 p-10 md:p-16 flex flex-col items-start">
+        <SectionLabel
+          label="会社情報"
+          heading="COMPANY"
+          labelClass="text-white/70"
+          headingClass="text-white font-display"
+          headingSize="2xl"
+        />
+        <p class="text-white/80 mt-4 font-sans text-base md:text-lg">
+          WAKU BUILD（ワクビル）株式会社
+        </p>
+        <p class="text-white/60 mt-2 font-sans text-sm max-w-md">
+          人とAIの協働で、中小企業のDXを力強く伴走します。
+        </p>
+        <a href="/company" class="btn-outline mt-8 inline-flex">
+          詳しく見る
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

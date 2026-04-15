@@ -1,0 +1,38 @@
+---
+import SectionLabel from './SectionLabel.astro';
+---
+
+<section class="py-20 md:py-28 bg-subtle">
+  <div class="section-container">
+    <SectionLabel
+      label="代表挨拶"
+      heading="MESSAGE"
+      headingClass="text-primary font-display"
+      headingSize="2xl"
+    />
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+      <!-- Photo -->
+      <div class="relative">
+        <img
+          src="/top/service-2.jpg"
+          alt="代表取締役 田中 和志"
+          class="w-full max-w-sm mx-auto md:mx-0 rounded-2xl object-cover aspect-[4/5]"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <!-- Text -->
+      <div class="space-y-6">
+        <p class="font-sans text-[#464646] text-base md:text-lg leading-relaxed">
+          私たちはDXという言葉が当たり前になった今も、多くの中小企業が取り残されていることを知っています。複雑な技術よりも、現場に寄り添い、共に考え、一歩一歩前進すること。それがワクビルの伴走スタイルです。
+        </p>
+        <div class="border-l-4 border-accent pl-4">
+          <p class="font-sans font-bold text-xl text-[#464646]">田中 和志</p>
+          <p class="font-sans text-sm text-slate-500 mt-0.5">代表取締役</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

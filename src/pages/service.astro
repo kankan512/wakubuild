@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const products = [
+  {
+    title: '議事録革命',
+    description: 'AIが会議の音声を自動で文字起こし・要約。議事録作成の時間を大幅に削減します。',
+    image: '/top/service-1.jpg',
+    imageAlt: '議事録革命のサービスイメージ',
+  },
+  {
+    title: 'しあわせ日報',
+    description: '従業員の日々の報告をAIが分析。マネジメントの質を向上させる日報ツールです。',
+    image: '/top/service-2.jpg',
+    imageAlt: 'しあわせ日報のサービスイメージ',
+  },
+];
+---
+
+<Layout
+  title="PRODUCTS | WAKU BUILD"
+  description="WAKU BUILD（ワクビル）の製品情報。AIを活用したSaaSプロダクト「議事録革命」「しあわせ日報」を提供しています。"
+  pathname="/service"
+>
+  <PageHero title="PRODUCTS" subtitle="製品情報" />
+
+  <!-- Products -->
+  {products.map((product, i) => (
+    <section class={`py-16 md:py-24 ${i % 2 === 0 ? 'bg-white' : 'bg-[#f7f7f5]'}`}>
+      <div class="section-container">
+        <div class={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-10 md:gap-16 items-center`}>
+          <!-- Image -->
+          <div class="w-full md:w-1/2">
+            <div class="relative overflow-hidden rounded-2xl">
+              <span class="absolute top-4 left-4 z-10 flex items-center justify-center bg-primary font-futura text-white text-sm px-4 py-1">
+                saas
+              </span>
+              <img
+                src={product.image}
+                alt={product.imageAlt}
+                class="w-full h-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+          <!-- Text -->
+          <div class="w-full md:w-1/2 space-y-4">
+            <p class="section-label">PRODUCTS</p>
+            <h2 class="font-sans font-bold text-[#464646] text-3xl md:text-4xl leading-tight">
+              {product.title}
+            </h2>
+            <p class="font-sans text-[#464646] text-base leading-relaxed">
+              {product.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- CTA -->
+  <section class="bg-white mt-8 py-16 md:py-24">
+    <div class="section-container">
+      <div class="bg-accent rounded-3xl py-16 md:py-20 px-8 text-center max-w-4xl mx-auto">
+        <p class="section-label mb-4">CONTACT</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-[#464646] mb-8">お問い合わせはこちら</h2>
+        <a href="/contact" class="btn-primary">CONTACTへ</a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,148 @@
+---
+// Hero section — pixel-perfect match to Figma node 1:11 (Subtract shape)
+// The Subtract is a large navy rounded rect with a concave notch at the top-left corner.
+---
+
+<section
+  class="relative bg-white pt-[18px] md:pt-9 pb-0 md:pb-9"
+  data-hero-section
+  aria-label="メインビジュアル"
+>
+  <!--
+    Shape container: ~4% horizontal margin matching the Figma
+    (63px / 1534px ≈ 4.1% left, 64px / 1534px ≈ 4.2% right)
+  -->
+  <div class="relative mx-5 md:mx-[4.1%]">
+
+    <!-- PC 用 hero SVG (md 以上で表示) -->
+    <svg
+      id="hero-svg-pc"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-full hidden md:block"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path id="hero-path-pc" fill="#334C9C" />
+    </svg>
+
+    <!-- SP 用 hero SVG (md 未満で表示) -->
+    <svg
+      id="hero-svg-sp"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-full block md:hidden"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path id="hero-path-sp" fill="#334C9C" />
+    </svg>
+
+    <style>
+      /* PC: section padding-top = 36px */
+      #hero-svg-pc {
+        height: calc(100dvh - 72px);
+        min-height: 280px;
+      }
+      /* SP: section padding-top = 18px */
+      #hero-svg-sp {
+        height: calc(100dvh - 18px);
+        min-height: 280px;
+      }
+    </style>
+
+    <script>
+      // PC用: 内側コーナーも丸める（既存のロジック）
+      function makePathPC(W, H, nX, nY, r) {
+        const safeNX = Math.min(nX, W - r - 10);
+        const safeNY = Math.min(nY, H - r - 5);
+        return [
+          `M${safeNX + r},0`, `H${W - r}`, `Q${W},0 ${W},${r}`,
+          `V${H - r}`, `Q${W},${H} ${W - r},${H}`,
+          `H${r}`, `Q0,${H} 0,${H - r}`,
+          `V${safeNY + r}`, `Q0,${safeNY} ${r},${safeNY}`,
+          `H${safeNX - r}`, `Q${safeNX},${safeNY} ${safeNX},${safeNY - r}`,
+          `V${r}`, `Q${safeNX},0 ${safeNX + r},0`, `Z`
+        ].join(' ');
+      }
+
+      // PC: r=50, nX=184, nY=136
+      function updatePathPC() {
+        const svg = document.getElementById('hero-svg-pc');
+        const path = document.getElementById('hero-path-pc');
+        if (!svg || !path) return;
+        const W = svg.clientWidth;
+        const H = svg.clientHeight;
+        if (W < 1 || H < 1) return;
+        path.setAttribute('d', makePathPC(W, H, 184, 136, 50));
+        svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      }
+
+      // SP: r=20, nX=94（Figmaノッチ幅に合わせる）, nY=62
+      function updatePathSP() {
+        const svg = document.getElementById('hero-svg-sp');
+        const path = document.getElementById('hero-path-sp');
+        if (!svg || !path) return;
+        const W = svg.clientWidth;
+        const H = svg.clientHeight;
+        if (W < 1 || H < 1) return;
+        path.setAttribute('d', makePathPC(W, H, 94, 62, 20));
+        svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      }
+
+      const heroSvgPC = document.getElementById('hero-svg-pc');
+      if (heroSvgPC) {
+        new ResizeObserver(updatePathPC).observe(heroSvgPC);
+        updatePathPC();
+      }
+
+      const heroSvgSP = document.getElementById('hero-svg-sp');
+      if (heroSvgSP) {
+        new ResizeObserver(updatePathSP).observe(heroSvgSP);
+        updatePathSP();
+      }
+    </script>
+
+    <!-- Text overlay — positioned to match Figma: layout group top = 354/1407 = 25.16% of shape width -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center">
+      <div class="flex items-center gap-5 lg:gap-10">
+
+        <!-- Left curly bracket (Figma Vector) -->
+        <img
+          src="/top/bracket-left.svg"
+          class="shrink-0 select-none h-[clamp(80px,18.82vw,290px)] w-auto"
+          alt=""
+          aria-hidden="true"
+        />
+
+        <!-- Main text block -->
+        <div class="text-center">
+          <p class="font-sans font-semibold text-[#f7f076] leading-tight pt-[1.5em] md:pt-[1em] text-[clamp(28px,5.5vw,84px)] tracking-[0.05em]">
+            あんなこといいな
+          </p>
+          <!-- Separator (Figma Vector 1:115 — two vertical bars) -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 17.859 30.281"
+            class="mx-auto select-none block h-[clamp(16px,1.96vw,30px)] w-auto mt-[0.6em] mb-[0.6em]"
+            aria-hidden="true"
+            fill="#ffffff"
+          >
+            <path d="M 0.04580257399003207 6.321794470368572 C 0.04580257399003207 4.489386601754959 0 2.0156353715902284 0 1.3284824037944958 C 0 0.1832275029766155 0.3205425482761659 0 1.6027407183773617 0 L 3.9839854460757644 0 C 5.26618361617696 0 5.586726164453126 0.1832275029766155 5.586726164453126 1.3284824037944958 C 5.586726164453126 2.0614455239349363 5.540923590463094 4.53519689062469 5.540923590463094 6.321794470368572 L 5.540923590463094 24.2335804201521 C 5.540923590463094 25.928557695206568 5.586726164453126 28.264889526864046 5.586726164453126 28.95204249465978 C 5.586726164453126 30.09729739547766 5.26618361617696 30.280542373657227 3.9839854460757644 30.280542373657227 L 1.6027407183773617 30.280542373657227 C 0.3205425482761659 30.280542373657227 0 30.09729739547766 0 28.95204249465978 C 0 28.21907937451934 0.04580257399003207 25.928557695206568 0.04580257399003207 24.2335804201521 L 0.04580257399003207 6.321794470368572 Z M 12.318272118765421 6.321794470368572 C 12.318272118765421 4.489386601754959 12.272469544775388 2.0156353715902284 12.272469544775388 1.3284824037944958 C 12.272469544775388 0.1832275029766155 12.593012093051554 0 13.87521026315275 0 L 16.256454990851154 0 C 17.53865316095235 0 17.859195709228516 0.1832275029766155 17.859195709228516 1.3284824037944958 C 17.859195709228516 2.0614455239349363 17.81339313523848 4.53519689062469 17.81339313523848 6.321794470368572 L 17.81339313523848 24.2335804201521 C 17.81339313523848 25.928557695206568 17.859195709228516 28.264889526864046 17.859195709228516 28.95204249465978 C 17.859195709228516 30.09729739547766 17.53865316095235 30.280542373657227 16.256454990851154 30.280542373657227 L 13.87521026315275 30.280542373657227 C 12.593012093051554 30.280542373657227 12.272469544775388 30.09729739547766 12.272469544775388 28.95204249465978 C 12.272469544775388 28.21907937451934 12.318272118765421 25.928557695206568 12.318272118765421 24.2335804201521 L 12.318272118765421 6.321794470368572 Z"/>
+          </svg>
+          <p class="font-sans font-semibold text-white leading-tight text-[clamp(18px,3.4vw,52px)] tracking-[0.1em]">
+            共に叶えるDX
+          </p>
+        </div>
+
+        <!-- Right curly bracket (Figma Vector) -->
+        <img
+          src="/top/bracket-right.svg"
+          class="shrink-0 select-none h-[clamp(80px,18.82vw,290px)] w-auto"
+          alt=""
+          aria-hidden="true"
+        />
+
+      </div>
+    </div>
+  </div><!-- end shape container -->
+
+</section>

@@ -1,0 +1,137 @@
+---
+// MISSION + VALUE unified section — Figma node 1:889
+//
+// Image: visible circle diameter ≈434px (28.3% of 1534px canvas)
+//        left edge at ≈-90px (bleeding off-screen)
+//        vertically centered in the combined section
+// Text:  both MISSION and VALUE centered horizontally on the page
+//
+// Vertical gaps (Figma, 1534px canvas → proportional ≈15vw for MISSION-to-VALUE gap):
+//   Section top → MISSION label : 137px  (≈9vw)
+//   MISSION heading bottom → VALUE label : 231px (≈15vw)
+//   VALUE values bottom → Section bottom : kept reasonable
+const values = ['自分が楽しむ', '相手を楽しませる', 'みんなで成長する'];
+---
+
+<section class="relative bg-white">
+
+  <div
+    class="pointer-events-none relative z-0 select-none overflow-hidden w-full m-0 py-4"
+    aria-hidden="true"
+  >
+    <div class="marquee-track flex whitespace-nowrap">
+      <span
+        class="marquee-item font-['Gill_Sans',sans-serif] font-bold leading-none text-[#f1f1f1]"
+      >
+        Creating WAKUWAKU.
+      </span>
+      <span
+        class="marquee-item font-['Gill_Sans',sans-serif] font-bold leading-none text-[#f1f1f1]"
+      >
+        Creating WAKUWAKU.
+      </span>
+      <span
+        class="marquee-item font-['Gill_Sans',sans-serif] font-bold leading-none text-[#f1f1f1]"
+      >
+        Creating WAKUWAKU.
+      </span>
+      <span
+        class="marquee-item font-['Gill_Sans',sans-serif] font-bold leading-none text-[#f1f1f1]"
+      >
+        Creating WAKUWAKU.
+      </span>
+    </div>
+  </div>
+
+  <style>
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      animation: marquee 60s linear infinite;
+      width: max-content;
+    }
+    /* Figma: 114–174px font, repeated 4× — defined once here */
+    .marquee-item {
+      font-size: clamp(114px, calc(95px + 5.2vw), 174px);
+      padding-right: clamp(40px, 6vw, 96px);
+    }
+  </style>
+
+  <div class="relative max-w-[1536px] mx-auto">
+
+  <!--
+    Circular photo — desktop only.
+    Figma: circle center at x≈127px (8.3% of 1534px page),
+    diameter ≈434px, left edge ≈-90px off-screen.
+    left:-5.9vw  ≈ -90px at 1534px
+    width:28.3vw ≈ 434px at 1534px
+    Vertically centered (image spans both MISSION and VALUE rows).
+  -->
+  <div
+    class="absolute hidden md:block pointer-events-none select-none z-10 overflow-hidden left-[-3vw] top-[clamp(70px,9vw,130px)] w-[clamp(260px,28.3vw,434px)]"
+    aria-hidden="true"
+  >
+    <img
+      src="/top/mission-1.png"
+      alt=""
+      class="w-full aspect-square object-cover object-top grayscale"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <!--
+    MISSION — Figma: label centered at x=743px, heading starts at x=465px
+    Both center around ~48-50% of page width → section-container text-center
+    Top padding: 137px at 1534px ≈ 9vw, clamped 80px–140px
+    Bottom margin to VALUE: 231px at 1534px ≈ 15vw, clamped 60px–231px
+  -->
+  <div class="section-container relative z-10 text-center mt-[-60px] mb-10 md:mb-[clamp(48px,14.2vw,218px)]">
+    <p class="section-label text-primary mb-0 md:mb-3 text-[clamp(16px,calc(12.8px_+_0.86vw),26px)] leading-10">
+      MISSION
+    </p>
+    <h2
+      class="font-sans font-bold text-[#464646] leading-tight text-[clamp(40px,5.2vw,80px)]"
+      style="font-variation-settings:'CTGR' 0,'wdth' 100;"
+    >
+      わくわくを創る
+    </h2>
+  </div>
+
+  <!-- Mobile: image between MISSION and VALUE -->
+  <div class="relative z-10 flex justify-center md:hidden px-6 mb-10">
+    <img
+      src="/top/mission-1.png"
+      alt=""
+      class="w-[190px] aspect-square object-cover object-top grayscale"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <!--
+    VALUE — Figma: label centered at x=743.5px, values centered at x=743px
+    47px font, line-height 1.8, three lines
+    Bottom padding: keep reasonable space below last value
+  -->
+  <div class="section-container relative z-10 text-center pb-10 md:pb-0">
+    <p class="section-label text-primary mb-0 md:mb-3 text-[clamp(16px,calc(12.8px_+_0.86vw),26px)] leading-10">
+      VALUE
+    </p>
+    <div>
+      {values.map((v) => (
+        <p
+          class="font-sans font-semibold text-[#464646] text-[clamp(24px,3.07vw,47px)] leading-[1.8]"
+          style="font-variation-settings:'CTGR' 0,'wdth' 100;"
+        >
+          {v}
+        </p>
+      ))}
+    </div>
+  </div>
+
+  </div>
+
+</section>
