@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+
+// 特定商取引法に基づく表記
+// ※ メールアドレスは実際のお問い合わせ用アドレスに差し替えてください。
+const items = [
+  {
+    label: '販売事業者',
+    value: 'WAKU BUILD（ワクビル）株式会社',
+  },
+  {
+    label: '運営統括責任者',
+    value: '田中 和志',
+  },
+  {
+    label: '所在地',
+    value: '〒530-0001 大阪府大阪市北区梅田1丁目2番2号 大阪駅前第2ビル12-12',
+  },
+  {
+    label: '電話番号',
+    value: '請求があったときには遅滞なく開示いたします。',
+  },
+  {
+    label: 'メールアドレス',
+    value: 'k-tanaka@waku-build.jp',
+  },
+  {
+    label: 'お問い合わせ',
+    value: 'お問い合わせは原則として上記メールアドレス、または当サイトのお問い合わせフォームよりお願いいたします。',
+  },
+  {
+    label: '販売価格',
+    value: '各サービスの紹介ページ、またはお見積り・ご契約時に提示する金額に準じます。価格はすべて税込で表示いたします。',
+  },
+  {
+    label: '商品代金以外の必要料金',
+    value: '銀行振込の場合の振込手数料は、お客様のご負担となります。',
+  },
+  {
+    label: 'お支払い方法',
+    value: 'クレジットカード決済（Stripe）または銀行振込',
+  },
+  {
+    label: 'お支払い時期',
+    value: 'クレジットカード決済の場合は、お申し込み時または役務提供開始前にお支払いいただきます。銀行振込の場合は、当社が発行する請求書に記載の期日までにお支払いください。',
+  },
+  {
+    label: 'サービスの提供時期',
+    value: '別途定める場合を除き、決済の確認後、速やかに役務の提供を開始いたします。提供期間や開始時期は、個別の契約・お見積り内容に準じます。',
+  },
+  {
+    label: '返品・キャンセルについて',
+    value: '本サービスは役務（サービス）の提供であり、その性質上、提供開始後の返品・返金は原則としてお受けできません。お申し込み後のキャンセルをご希望の場合は、役務提供開始前にお問い合わせ先までご連絡ください。個別の契約内容に基づき対応いたします。',
+  },
+];
+---
+
+<Layout
+  title="特定商取引法に基づく表記 | WAKU BUILD"
+  description="WAKU BUILD（ワクビル）株式会社の特定商取引法に基づく表記です。"
+  pathname="/legal"
+>
+  <PageHero title="LEGAL" subtitle="特定商取引法に基づく表記" />
+
+  <section class="py-16 md:py-24 bg-white">
+    <div class="section-container">
+      <p class="section-label mb-1">SPECIFIED COMMERCIAL TRANSACTIONS ACT</p>
+      <p class="font-sans font-bold text-[#464646] text-2xl md:text-3xl mb-8">特定商取引法に基づく表記</p>
+      <dl class="max-w-3xl">
+        {items.map((item) => (
+          <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8 py-5 border-b border-[#464646]">
+            <dt class="font-sans font-bold text-sm text-primary sm:w-40 shrink-0 pt-0.5">{item.label}</dt>
+            <dd class="font-sans text-[#464646] text-base leading-relaxed">{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-white mt-8 py-16 md:py-24">
+    <div class="section-container">
+      <div class="bg-accent rounded-3xl py-16 md:py-20 px-8 text-center max-w-4xl mx-auto">
+        <p class="section-label mb-4">CONTACT</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-[#464646] mb-8">お問い合わせはこちら</h2>
+        <a href="/contact" class="btn-primary">CONTACTへ</a>
+      </div>
+    </div>
+  </section>
+</Layout>
